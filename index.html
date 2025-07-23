@@ -138,19 +138,19 @@
         
         <div class="input-group">
             <label for="monthlyRate">月收益率 (%)</label>
-            <input type="number" id="monthlyRate" step="0.01" placeholder="请输入月收益率">
+            <input type="number" id="monthlyRate" step="0.01" placeholder="请输入月收益率" inputmode="numeric" pattern="[0-9]*">
             <div class="error-message" id="monthlyRateError"></div>
         </div>
 
         <div class="input-group">
             <label for="quarterlyRate">季度收益率 (%)</label>
-            <input type="number" id="quarterlyRate" step="0.01" placeholder="请输入季度收益率">
+            <input type="number" id="quarterlyRate" step="0.01" placeholder="请输入季度收益率" inputmode="numeric" pattern="[0-9]*">
             <div class="error-message" id="quarterlyRateError"></div>
         </div>
 
         <div class="input-group">
             <label for="halfYearRate">半年收益率 (%)</label>
-            <input type="number" id="halfYearRate" step="0.01" placeholder="请输入半年收益率">
+            <input type="number" id="halfYearRate" step="0.01" placeholder="请输入半年收益率" inputmode="numeric" pattern="[0-9]*">
             <div class="error-message" id="halfYearRateError"></div>
         </div>
 
@@ -262,8 +262,8 @@
         }
 
         // 添加输入事件监听器
-        monthlyRateInput.addEventListener('input', function() {
-            if (validateInput(this.value, monthlyRateError)) {
+        monthlyRateInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && validateInput(this.value, monthlyRateError)) {
                 clearOtherInputs(this);
                 const annualRate = calculateAnnualRate(this.value, 12);
                 annualRateDisplay.textContent = `${annualRate}%`;
@@ -273,8 +273,8 @@
             }
         });
 
-        quarterlyRateInput.addEventListener('input', function() {
-            if (validateInput(this.value, quarterlyRateError)) {
+        quarterlyRateInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && validateInput(this.value, quarterlyRateError)) {
                 clearOtherInputs(this);
                 const annualRate = calculateAnnualRate(this.value, 4);
                 annualRateDisplay.textContent = `${annualRate}%`;
@@ -284,8 +284,8 @@
             }
         });
 
-        halfYearRateInput.addEventListener('input', function() {
-            if (validateInput(this.value, halfYearRateError)) {
+        halfYearRateInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && validateInput(this.value, halfYearRateError)) {
                 clearOtherInputs(this);
                 const annualRate = calculateAnnualRate(this.value, 2);
                 annualRateDisplay.textContent = `${annualRate}%`;
