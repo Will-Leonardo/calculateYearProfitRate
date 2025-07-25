@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>收益率计算器</title>
     <style>
+        /* 保持原有样式不变 */
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             max-width: 800px;
@@ -261,39 +262,46 @@
             });
         }
 
-        // 添加输入事件监听器
-        monthlyRateInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && validateInput(this.value, monthlyRateError)) {
-                clearOtherInputs(this);
-                const annualRate = calculateAnnualRate(this.value, 12);
+        // 处理输入计算的函数
+        function handleCalculation(input, errorElement, period, type) {
+            console.log('处理输入计算:', type); // 调试日志
+            if (validateInput(input.value, errorElement)) {
+                clearOtherInputs(input);
+                const annualRate = calculateAnnualRate(input.value, period);
                 annualRateDisplay.textContent = `${annualRate}%`;
-                if (this.value !== '') {
-                    addHistoryRecord('月收益率', this.value, annualRate);
+                if (input.value !== '') {
+                    addHistoryRecord(type, input.value, annualRate);
                 }
             }
-        });
+        }
 
-        quarterlyRateInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && validateInput(this.value, quarterlyRateError)) {
-                clearOtherInputs(this);
-                const annualRate = calculateAnnualRate(this.value, 4);
-                annualRateDisplay.textContent = `${annualRate}%`;
-                if (this.value !== '') {
-                    addHistoryRecord('季度收益率', this.value, annualRate);
+        // 为每个输入框添加事件监听器
+        function addInputListeners(input, errorElement, period, type) {
+            // 监听回车键事件
+            input.addEventListener('keypress', function(e) {
+                console.log('keypress 事件触发:', e.key); // 调试日志
+                if (e.key === 'Enter') {
+                    handleCalculation(input, errorElement, period, type);
                 }
-            }
-        });
+            });
 
-        halfYearRateInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && validateInput(this.value, halfYearRateError)) {
-                clearOtherInputs(this);
-                const annualRate = calculateAnnualRate(this.value, 2);
-                annualRateDisplay.textContent = `${annualRate}%`;
-                if (this.value !== '') {
-                    addHistoryRecord('半年收益率', this.value, annualRate);
-                }
-            }
-        });
+            // 监听输入框失去焦点事件
+            input.addEventListener('blur', function() {
+                console.log('blur 事件触发'); // 调试日志
+                handleCalculation(input, errorElement, period, type);
+            });
+
+            // 监听移动端虚拟键盘确认事件
+            input.addEventListener('change', function() {
+                console.log('change 事件触发'); // 调试日志
+                handleCalculation(input, errorElement, period, type);
+            });
+        }
+
+        // 添加事件监听器
+        addInputListeners(monthlyRateInput, monthlyRateError, 12, '月收益率');
+        addInputListeners(quarterlyRateInput, quarterlyRateError, 4, '季度收益率');
+        addInputListeners(halfYearRateInput, halfYearRateError, 2, '半年收益率');
     </script>
 </body>
 </html>
