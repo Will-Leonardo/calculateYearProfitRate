@@ -1,0 +1,51 @@
+/*
+ * @Autor: wangliangxin3
+ * @Email: wangliangxin3@jd.com
+ * @Description: 全局基础样式
+ * @Date: 2025-09-26 18:10:00
+ * @LastEditors: wangliangxin3
+ * @LastEditTime: 2025-09-26 19:07:45
+ */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f4f6fb;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+a {
+  color: #4285f4;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #2366d1;
+  text-decoration: underline;
+}
+button, input, select {
+  font-family: inherit;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background: #f4f6fb;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e4ea;
+  border-radius: 4px;
+}
+@media (max-width: 600px) {
+  html, body {
+    font-size: 15px;
+    background: #f4f6fb;
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  #app {
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #f4f6fb;
+  }
+}

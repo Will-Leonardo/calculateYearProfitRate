@@ -1,0 +1,20 @@
+{
+  "name": "calculate-year",
+  "version": "1.0.0",
+  "description": "个人工具百宝箱，基于 Vue3 + Vite，支持年化收益率计算与基金估值中心，兼容 PC/移动端，可部署到 GitHub Pages。",
+  "author": "wangliangxin3 <wangliangxin3@jd.com>",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.5.0"
+  }
+}
